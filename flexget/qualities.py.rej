@@ -1,7 +1,0 @@
-*** /dev/null
---- /dev/null
-***************
-*** 121
--     QualityComponent('resolution', 60, '720p', '(1280x)?720p?'),
---- 121 -----
-+     QualityComponent('resolution', 60, '720p', '(1280x)?720p?x?'),
