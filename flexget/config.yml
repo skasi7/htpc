@@ -1,0 +1,33 @@
+presets:
+  tv-spanish:
+    series:
+      720p:
+        - Person Of Interest
+        - Bones
+      hdtv:
+        - Mentes Criminales:
+            set:
+              movedone: /data/store/Series/Criminal Minds/Season%(series_season)s/
+    deluge:
+      movedone: /data/store/Series/%(series_name)s/Season%(series_season)s/
+      queuetotop: yes
+tasks:
+  tv-spanish:
+    rss: http://feeds.feedburner.com/newpctorrent
+    preset: tv-spanish
+    form:
+      url: http://www.newpct.com
+      userfield: userName
+      passfield: userPass
+      username: your_newpct_username
+      password: your_newpct_password
+    manipulate:
+      - title:
+          replace:
+            regexp: 'Temporada \d+'
+            format: ''
+      - title:
+          replace:
+            regexp: 'Cap.(\d?\d)(\d\d)'
+            format: '\1x\2'
+
