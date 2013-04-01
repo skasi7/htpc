@@ -1,5 +1,15 @@
-Instructions to install newpct plugin for flexget
-================================================
+Instructions to install listdir encoding patch
+==============================================
+
+- Apply the listdir patch with the command:
+  > patch listdir.py < listdir.py.patch
+
+  listdir.py file can be found at:
+    /usr/local/lib/python2.7/dist-package/flexget/plugins/input
+    (This is the debian path for Python 2.7, find yours).
+
+Instructions to install newpct plugin for flexget (added in r3248)
+==================================================================
 
 - Copy the urlrewrite_newpct.py file to:
   /usr/local/lib/python2.7/dist-packages/flexget/plugins/
