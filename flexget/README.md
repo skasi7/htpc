@@ -1,10 +1,20 @@
+Instructions to install revised newpct plugin
+=============================================
+
+- Apply the patch with the command:
+  > patch urlrewrite_newpct.py < urlrewrite_newpct.patch
+
+  urlrewrite_newpct.py file can be found at:
+    /usr/local/lib/python2.7/dist-packages/flexget/plugins/urlrewrite_newpct.py
+    (This is the debian path for Python 2.7, find yours).
+
 Instructions to install malformed HTML in formlogin patch
 =========================================================
 
 - Apply the patch with the command:
   > patch plugin_formlogin.py < plugin_formlogin.py.patch
 
-  listdir.py file can be found at:
+  plugin_formlogin.py file can be found at:
     /usr/local/lib/python2.7/dist-packages/flexget/plugins/plugin_formlogin.py
     (This is the debian path for Python 2.7, find yours).
 
