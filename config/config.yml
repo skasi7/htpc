@@ -1,0 +1,85 @@
+presets:
+  filter-all:
+    accept_all: yes
+    deluge:
+      movedone: /data/store/Unsorted/
+      main_file_only: yes
+  filter-series:
+    deluge:
+      movedone: /data/store/Series/%(series_name)s/Season%(series_season)s/
+      content_filename: "{{series_name}} - {{series_id}} - {{quality}}"
+      main_file_only: yes
+  series-en:
+    series:
+      720p:
+        - Marvels Agents
+        - Game Of Thrones
+        - Sherlock
+        - Almost Human
+      hdtv:
+        - The Big Bang Theory
+        - Luther
+  series-es:
+    series:
+      settings:
+        720p:
+          timeframe: 24 hours
+      720p:
+        - El Mentalista:
+            set:
+              movedone: /data/store/Series/The Mentalist/Season%(series_season)s/
+        - Person Of Interest
+        - Homeland
+      hdtv:
+        - C.S.I. Las Vegas:
+            set:
+              movedone: '/data/store/Series/CSI: Crime Scene Investigation/Season%(series_season)s/'
+        - La Que Se Avecina
+  newpct:
+    form:
+      url: http://www.newpct.com
+      userfield: userName
+      passfield: userPass
+      username: <newpct_username>
+      password: <newpct_password>
+    manipulate:
+      - title:
+          replace:
+            regexp: 'Temporada \d+'
+            format: ''
+      - title:
+          replace:
+            regexp: 'Cap.(\d?\d)(\d\d)'
+            format: '\1x\2'
+
+tasks:
+  series-1:
+    rss:
+      url: http://showrss.karmorra.info/feeds/all.rss
+      all_entries: no
+    preset:
+      - filter-series
+      - series-en
+  series-2:
+    rss:
+      url: http://ezrss.it/feed/
+      all_entries: no
+    preset:
+      - filter-series
+      - series-en
+  series-newpct:
+    rss:
+      url: http://feeds.feedburner.com/newpctorrent
+      all_entries: no
+    preset:
+      - newpct
+      - filter-series
+      - series-es
+  movies-miniflux:
+    rss:
+      url: 'http://netberry/miniflux/feed.php?token=mGDJW1azn9ufJ%2Fs'
+      all_entries: no
+    preset:
+      - newpct
+      - filter-all
+
