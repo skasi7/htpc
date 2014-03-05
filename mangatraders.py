@@ -17,15 +17,24 @@ import urllib2
 
 BASE_URL = 'http://www.mangatraders.com'
 DEST_PATH = '/data/store/Manga/'
+END_URL = '__END_TASK__'
 
 
 def f(task_queue, output_queue):
   while True:
     try:
       input_url = task_queue.get()
-      output_queue.put('[*] Processing %s...' % input_url)
+      if input_url == END_URL:
+        task_queue.put(END_URL)
+        break
 
-      soup = BeautifulSoup.BeautifulSoup(urllib2.urlopen(input_url).read())
+      output_queue.put('[*] Processing %s ...' % input_url)
+
+      try:
+        soup = BeautifulSoup.BeautifulSoup(urllib2.urlopen(input_url).read())
+      except Exception:
+        output_queue.put('[!] Error processing %s' % input_url)
+        continue
 
       links = soup('input', value='Next Page')
       if len(links) != 1:
@@ -33,7 +42,10 @@ def f(task_queue, output_queue):
         continue
 
       next_page = '%s%s' % (BASE_URL, links[0]['onclick'].split('=', 1)[1][1:-1])
-      task_queue.put(next_page)
+      if next_page == input_url:
+        task_queue.put(END_URL)
+      else: 
+        task_queue.put(next_page)
 
       links = soup('option', selected='selected')
       if len(links) != 2:
@@ -50,7 +62,12 @@ def f(task_queue, output_queue):
         continue
       image_url = links[0]['src']
 
-      urllib.urlretrieve(image_url, dst_filename)
+      try:
+        urllib.urlretrieve(image_url, dst_filename)
+      except Exception:
+        output_queue.put('[!] Error retrieving %s' % image_url)
+        continue
+
       output_queue.put('[*] Image %s saved to %s' % (image_url, dst_filename))
     except EOFError:
       break
