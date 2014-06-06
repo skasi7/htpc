@@ -2,7 +2,7 @@ Instructions to install revised newpct plugin
 =============================================
 Due to the recent www.newpct.com ISP block, www.newpct1.com site has been enabled. Update your urlrewrite plugin in Flexget to be able to download again.
 
-- Copy the new plugin to:
+- Copy the new urlrewrite_newpct.py file plugin to:
   /usr/local/lib/python2.7/dist-packages/flexget/plugins/urlrewrite_newpct.py
   (This is the debian path for Python 2.7, find yours).
 
