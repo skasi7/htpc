@@ -1,4 +1,0 @@
-121c121
-<     QualityComponent('resolution', 60, '720p', '(1280x)?720p?'),
----
->     QualityComponent('resolution', 60, '720p', '(1280x)?720p?x?'),
