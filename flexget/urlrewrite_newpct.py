@@ -42,11 +42,11 @@ class UrlRewriteNewPCT(object):
             soup = get_soup(page.text)
         except Exception as e:
             raise UrlRewritingError(e)
-        torrent_id_prog = re.compile("'torrentID': '(\d+)'")
-        torrent_ids = soup.findAll(text=torrent_id_prog)
+        torrent_id_prog = re.compile(r'descargar/torrent/(\d+)/')
+        torrent_ids = soup.findAll(href=torrent_id_prog)
         if len(torrent_ids) == 0:
             raise UrlRewritingError('Unable to locate torrent ID from url %s' % url)
-        torrent_id = torrent_id_prog.search(torrent_ids[0]).group(1)
+        torrent_id = torrent_id_prog.search(torrent_ids[0]['href']).group(1)
         return 'http://www.newpct1.com/descargar/torrent/%s/dummy.html' % torrent_id
 
 @event('plugin.register')
