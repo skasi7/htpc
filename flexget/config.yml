@@ -16,7 +16,7 @@ tasks:
     rss: http://feeds.feedburner.com/newpctorrent
     preset: tv-spanish
     form:
-      url: http://www.newpct.com
+      url: http://www.newpct.com/entrar
       userfield: userName
       passfield: userPass
       username: your_newpct_username
