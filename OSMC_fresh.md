@@ -7,5 +7,6 @@ Installing osmc
 4. Install flexget like this: https://flexget.com/InstallWizard/Linux
 5. Install cron (for flexget to run).
 6. Schedule flexget like this: https://flexget.com/InstallWizard/Linux/Scheduling
-7. Install deluge-console.
+7. Install deluged and deluge-console.
+8. Schedule deluged like this (but changin user/group to osmc): http://dev.deluge-torrent.org/wiki/UserGuide/Service/systemd
 8. Install the config.txt, Kodi, flexget and deluge config backups.
